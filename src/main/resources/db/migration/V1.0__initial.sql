@@ -1,0 +1,1 @@
+--INSERT INTO `product`(`id`, `name`) VALUES('76b3ead0-f14b-11ea-adc1-0242ac120002', 'initial product v1');
