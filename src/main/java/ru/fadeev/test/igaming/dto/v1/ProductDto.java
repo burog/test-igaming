@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 public class ProductDto {
     private Long id;
     private String name;
+    //TODO here should be money pattern by Martin Fowler, just keep long as for simplicity
     private Long price;
-//    private MonetaryAmount price;
     private LocalDateTime date;
-//todo add curency and float value
 }

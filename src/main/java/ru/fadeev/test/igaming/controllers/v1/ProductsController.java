@@ -7,10 +7,8 @@ import ru.fadeev.test.igaming.dto.v1.ProductDto;
 import ru.fadeev.test.igaming.services.ProductMapper;
 import ru.fadeev.test.igaming.services.ProductService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -18,7 +16,6 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/v1/products")
 public class ProductsController {
 
-    private static final Random RANDOM = new Random();
     @Autowired
     private ProductService service;
 
@@ -26,27 +23,15 @@ public class ProductsController {
     private ProductMapper productMapper;
 
     @PostMapping
-    public ProductDto createProduct(ProductDto productDto) {
+    public ProductDto createProduct(@RequestBody ProductDto productDto) {
         Product product = productMapper.productDtoToProduct(productDto);
         return productMapper.productToProductDto(service.createProduct(product));
     }
 
     @GetMapping("{id}")
     public ProductDto getProduct(@PathVariable Long id) {
-
         Product product = service.getProduct(id);
         return productMapper.productToProductDto(product);
-    }
-
-//    TODO REMOVE
-    @GetMapping("hello")
-    public ProductDto getProduct() {
-        ProductDto productDto = new ProductDto();
-        productDto.setName("stub hello product");
-        productDto.setPrice(1L);
-        productDto.setId(RANDOM.nextLong());
-        productDto.setDate(LocalDateTime.now());
-        return productDto;
     }
 
     @GetMapping
@@ -56,13 +41,13 @@ public class ProductsController {
                 .map(product -> productMapper.productToProductDto(product)).collect(Collectors.toList());
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public void deleteProduct(@PathVariable Long id) {
         service.deleteProduct(id);
     }
 
     @PutMapping
-    public ProductDto update(ProductDto productDto) {
+    public ProductDto update(@RequestBody ProductDto productDto) {
         Product product = productMapper.productDtoToProduct(productDto);
         Product updatedProduct = service.update(product);
         return productMapper.productToProductDto(updatedProduct);
