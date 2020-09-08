@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.fadeev.test.igaming.domain.Product;
 import ru.fadeev.test.igaming.domain.exceptions.NotFoundException;
 
-import java.util.UUID;
-
 @Service
 public class ProductService {
     @Autowired
@@ -16,12 +14,23 @@ public class ProductService {
         return productRepo.save(product);
     }
 
-    public Product getProduct(UUID id) {
+    public Product getProduct(Long id) {
         return productRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException("can't find product by id "+id));
     }
 
     public Iterable<Product> getAllProducts() {
         return productRepo.findAll();
+    }
+
+    public void deleteProduct(Long id) {
+        productRepo.deleteById(id);
+    }
+
+    public Product update(Product product) {
+        productRepo.findById(product.getId())
+                .orElseThrow(() -> new NotFoundException("can't find product by id " + product.getId()));
+
+        return productRepo.save(product);
     }
 }

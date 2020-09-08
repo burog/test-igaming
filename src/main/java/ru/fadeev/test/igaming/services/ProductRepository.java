@@ -4,9 +4,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import ru.fadeev.test.igaming.domain.Product;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface ProductRepository extends PagingAndSortingRepository<Product, UUID> {
+public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
     List<Product> findByName(String name);
 
 }

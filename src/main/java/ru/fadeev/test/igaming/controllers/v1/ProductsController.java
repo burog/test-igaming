@@ -9,14 +9,16 @@ import ru.fadeev.test.igaming.services.ProductService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/v1/products")
-public class Products {
+public class ProductsController {
 
+    private static final Random RANDOM = new Random();
     @Autowired
     private ProductService service;
 
@@ -30,7 +32,7 @@ public class Products {
     }
 
     @GetMapping("{id}")
-    public ProductDto getProduct(@PathVariable UUID id) {
+    public ProductDto getProduct(@PathVariable Long id) {
 
         Product product = service.getProduct(id);
         return productMapper.productToProductDto(product);
@@ -42,7 +44,7 @@ public class Products {
         ProductDto productDto = new ProductDto();
         productDto.setName("stub hello product");
         productDto.setPrice(1L);
-        productDto.setId(UUID.randomUUID());
+        productDto.setId(RANDOM.nextLong());
         productDto.setDate(LocalDateTime.now());
         return productDto;
     }
@@ -54,5 +56,15 @@ public class Products {
                 .map(product -> productMapper.productToProductDto(product)).collect(Collectors.toList());
     }
 
+    @DeleteMapping
+    public void deleteProduct(@PathVariable Long id) {
+        service.deleteProduct(id);
+    }
 
+    @PutMapping
+    public ProductDto update(ProductDto productDto) {
+        Product product = productMapper.productDtoToProduct(productDto);
+        Product updatedProduct = service.update(product);
+        return productMapper.productToProductDto(updatedProduct);
+    }
 }

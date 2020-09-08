@@ -9,7 +9,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 public class SwaggerConfig {
-//TODO make sure that this config is needed with starter
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)

@@ -1,1 +1,9 @@
---INSERT INTO `product`(`id`, `name`) VALUES('76b3ead0-f14b-11ea-adc1-0242ac120002', 'initial product v1');
+CREATE TABLE PRODUCT (
+   ID BIGINT(20) NOT NULL,
+   DATE TIMESTAMP,
+   NAME VARCHAR(255),
+   PRICE BIGINT(19),
+   PRIMARY KEY  (ID)
+);
+
+INSERT INTO `PRODUCT`(`ID`, `NAME`, `PRICE`, `DATE`) VALUES(0, 'initial product v1', 10, parsedatetime('01-01-2000 00:00:01.00', 'dd-MM-yyyy hh:mm:ss.SS'));
