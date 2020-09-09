@@ -5,7 +5,9 @@
 - As DB used H2. For current implementation it should be easily change to Postgres or other DB.
 - for data migration (initial load) used flyway
 - added swagger support
-- health check available via `/actuator/health`
+- h2 console available via `http://localhost:8080/h2-console` 
+and db-url: `jdbc:h2:mem:testdb`, user: `sa`, password: `password`
+- health check available via `/actuator/health`. Other benefit from actuator just need to enable
 - for dto 2 domain entity used mapstruct
 - Dockerfile available as a draft
 - Test are not implemented
