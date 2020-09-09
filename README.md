@@ -9,6 +9,7 @@
 and db-url: `jdbc:h2:mem:testdb`, user: `sa`, password: `password`
 - health check available via `/actuator/health`. Other benefit from actuator just need to enable
 - for dto 2 domain entity used mapstruct
+- used simplified view of price - without currency and fractional numbers
 - Dockerfile available as a draft
 - Test are not implemented
 
