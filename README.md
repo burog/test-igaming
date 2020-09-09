@@ -24,6 +24,7 @@ For accessing rest used default spring boot http port `8080`.
 So if you execute via `bootRun` from local machine - you can observe api by URL http://localhost:8080/swagger-ui/ (make sure tailing slash)
 
 ### TODO
+- in case of high load and may be efficient implementing CQRS or at least use asynchronous API
 - add sleuth
 - use webflux instead of blocking controllers (and react approach in whole project service + db)
 - add BDD test (cucumber) may be based on testcontainers
